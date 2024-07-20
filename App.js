@@ -1,8 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import * as background from './modules/background-task/index';
 
 export default function App() {
-  const handleEvents = () => {};
+  const handleEvents = () => {
+    const res = background.hello()
+    console.log('response:  ', res);
+  };
   const Headers = () => {
     return (
       <View style={styles.Headers}>
@@ -15,7 +19,7 @@ export default function App() {
   const Contents = () => {
     return (
       <View style={styles.Contents}>
-        <TouchableOpacity style={styles.onButton}>
+        <TouchableOpacity onPress={handleEvents} style={styles.onButton}>
           <Text style={styles.onTitle}>Comenzar Task</Text>
         </TouchableOpacity>
       </View>
