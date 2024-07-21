@@ -3,8 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as background from './modules/background-task/index';
 
 export default function App() {
+  
   const handleEvents = () => {
-    const res = background.hello()
+    const res = background.showLiveActivity()
     console.log('response:  ', res);
   };
   const Headers = () => {
