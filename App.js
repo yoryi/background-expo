@@ -69,7 +69,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#090A0E",
+    backgroundColor: "#F9F9F9",
   },
   Contents: {
     gap: 20,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     padding: 15,
     minWidth: 180,
     borderRadius: 10,
-    backgroundColor: "#FEFEFE",
+    backgroundColor: "grey",
   },
   title: {
     fontSize: 18,
