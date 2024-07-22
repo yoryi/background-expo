@@ -36,6 +36,7 @@ export default function App() {
           style={styles.input}
           onChangeText={setNum}
           keyboardType={"numeric"}
+          placeholderTextColor={'black'}
           placeholder={"Numero Peticiones"}
         />
         <TouchableOpacity onPress={handleEvents1} style={styles.onButton}>

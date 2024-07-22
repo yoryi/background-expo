@@ -1,6 +1,8 @@
 import Foundation
 import ExpoModulesCore
 import UserNotifications
+import ActivityKit
+
 
 public class BackgroundTaskModule: Module {
     var count = 0
@@ -18,6 +20,39 @@ public class BackgroundTaskModule: Module {
             self.requestNotificationPermissions()
         }
     }
+    
+    private func startLiveActivity(title: String, details: String) {
+      struct LiveActivityAttributes: ActivityAttributes {
+        public typealias LiveActivityData = ContentState
+
+        public struct ContentState: Codable, Hashable {
+          var details: String
+        }
+        var title: String
+      }
+      
+      let attributes = LiveActivityAttributes(title: title)
+      let contentState = LiveActivityAttributes.ContentState(details: details)
+      
+      if #available(iOS 16.1, *) {
+        Task {
+          do {
+            let activity = try Activity<LiveActivityAttributes>.request(
+              attributes: attributes,
+              contentState: contentState,
+              pushType: nil
+            )
+            
+            print("Live Activity started with id: \(activity.id)")
+          } catch {
+            print("Failed to start Live Activity: \(error)")
+          }
+        }
+      } else {
+        print("ActivityKit is not available on this version of iOS")
+      }
+    }
+  
 
     private func startSimulation(number: Int) {
         self.endBackgroundTask()
