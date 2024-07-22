@@ -46,7 +46,7 @@ export default function App() {
           onPress={handleEvents2}
           style={styles.onButton}
         >
-          <Text style={styles.onTitle}>Simulacion Carga {num} Post</Text>
+          <Text style={styles.onTitle}>Simulacion Carga {num}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     padding: 15,
     minWidth: 180,
     borderRadius: 10,
-    backgroundColor: "grey",
+    backgroundColor: "white",
   },
   title: {
     fontSize: 18,
