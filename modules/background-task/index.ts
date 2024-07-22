@@ -1,13 +1,9 @@
 import BackgroundTaskModule from './src/BackgroundTaskModule';
 
-export function showLiveActivity() {
-  return BackgroundTaskModule.startActivity();
+export function requestPermissions() {
+  return BackgroundTaskModule.requestPermissions();
 }
 
-export function areActivitiesEnabled() {
-  return BackgroundTaskModule.areActivitiesEnabled();
-}
-
-export function endActivity() {
-  return BackgroundTaskModule.endActivity();
+export function startSimulation() {
+  return BackgroundTaskModule.startSimulation();
 }
