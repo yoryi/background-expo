@@ -3,11 +3,21 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as background from './modules/background-task/index';
 
 export default function App() {
-  
-  const handleEvents = () => {
+  const handleEvents1 = () => {
+    const res = background.areActivitiesEnabled()
+    console.log('response:  ', res);
+  };
+
+  const handleEvents2 = () => {
     const res = background.showLiveActivity()
     console.log('response:  ', res);
   };
+
+  const handleEvents3 = () => {
+    const res = background.endActivity()
+    console.log('response:  ', res);
+  };
+
   const Headers = () => {
     return (
       <View style={styles.Headers}>
@@ -20,8 +30,14 @@ export default function App() {
   const Contents = () => {
     return (
       <View style={styles.Contents}>
-        <TouchableOpacity onPress={handleEvents} style={styles.onButton}>
+        <TouchableOpacity onPress={handleEvents1} style={styles.onButton}>
+          <Text style={styles.onTitle}>Permisos Task</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleEvents2} style={styles.onButton}>
           <Text style={styles.onTitle}>Comenzar Task</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleEvents3} style={styles.onButton}>
+          <Text style={styles.onTitle}>Terminar Task</Text>
         </TouchableOpacity>
       </View>
     );
