@@ -4,6 +4,6 @@ export function requestPermissions() {
   return BackgroundTaskModule.requestPermissions();
 }
 
-export function startSimulation() {
-  return BackgroundTaskModule.startSimulation();
+export function startSimulation(numberPost: number) {
+  return BackgroundTaskModule.startSimulation(numberPost);
 }

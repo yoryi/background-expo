@@ -10,8 +10,8 @@ public class BackgroundTaskModule: Module {
     public func definition() -> ModuleDefinition {
         Name("BackgroundTask")
         
-        Function("startSimulation") {
-            self.startSimulation()
+        Function("startSimulation") { (number: Int) in
+            self.startSimulation(number: number)
         }
 
         Function("requestPermissions") {
@@ -19,7 +19,7 @@ public class BackgroundTaskModule: Module {
         }
     }
 
-    private func startSimulation() {
+    private func startSimulation(number: Int) {
         self.endBackgroundTask()
         backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "BackgroundTask") {
             self.endBackgroundTask()
@@ -27,7 +27,7 @@ public class BackgroundTaskModule: Module {
         
         self.count = 0
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if self.count < 20 {
+            if self.count < number {
                 self.count += 1
                 let requestID = self.count
                 if let url = URL(string: "https://jsonplaceholder.typicode.com/posts") {

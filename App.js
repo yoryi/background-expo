@@ -1,19 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
 import * as background from './modules/background-task/index';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 export default function App() {
+  const [num, setNum] = useState(0)
+
   const handleEvents1 = () => {
     const res = background.requestPermissions()
-    console.log('response:  ', res);
+    console.log('Notifications:  ', res);
   };
 
   const handleEvents2 = () => {
-    const res = background.startSimulation()
-    console.log('response:  ', res);
+    const numAsInt = parseInt(num, 10);
+    if (!isNaN(numAsInt)) {
+      return background.startSimulation(numAsInt);
+    }
   };
 
-  const Headers = () => {
+  const renderHeaders = () => {
     return (
       <View style={styles.Headers}>
         <Text style={styles.title}>Background Task</Text>
@@ -22,14 +27,25 @@ export default function App() {
     );
   };
 
-  const Contents = () => {
+  const renderContents = () => {
     return (
       <View style={styles.Contents}>
+        <TextInput
+          value={num}
+          maxLength={2}
+          style={styles.input}
+          onChangeText={setNum}
+          keyboardType={"numeric"}
+          placeholder={"Numero Peticiones"}
+        />
         <TouchableOpacity onPress={handleEvents1} style={styles.onButton}>
           <Text style={styles.onTitle}>Permisos Notificaciones</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleEvents2} style={styles.onButton}>
-          <Text style={styles.onTitle}>Simulacion Carga 20 Post</Text>
+        <TouchableOpacity
+          onPress={handleEvents2}
+          style={styles.onButton}
+        >
+          <Text style={styles.onTitle}>Simulacion Carga {num} Post</Text>
         </TouchableOpacity>
       </View>
     );
@@ -37,11 +53,13 @@ export default function App() {
 
   const renderUI = () => {
     return (
-      <View style={styles.container}>
-        <StatusBar style={'light'}  />
-        <Headers />
-        <Contents />
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <StatusBar style={"light"} />
+          {renderHeaders()}
+          {renderContents()}
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
   return renderUI();
@@ -69,18 +87,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "blue",
   },
+  input: {
+    padding: 15,
+    minWidth: 180,
+    borderRadius: 10,
+    backgroundColor: "#FEFEFE",
+  },
   title: {
-    fontSize: 17,
+    fontSize: 18,
     color: "white",
     fontWeight: "bold",
   },
   subTitle: {
-    fontSize: 11,
+    fontSize: 13,
     paddingTop: 5,
     color: "#5A6573",
   },
   onTitle: {
-    fontSize: 12,
+    fontSize: 14,
     color: 'white',
   },
   onButton: {
