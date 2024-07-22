@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import * as background from './modules/background-task/index';
+import { StatusBar } from 'expo-status-bar';
+import * as background from './modules/background-task';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 export default function App() {
