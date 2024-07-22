@@ -36,10 +36,6 @@ public class BackgroundTaskModule: Module {
                             print("Error: \(error)")
                             return
                         }
-                        guard let data = data else {
-                            print("No data received")
-                            return
-                        }
                         print("Request ID: \(requestID)")
                     }
                     task.resume()
